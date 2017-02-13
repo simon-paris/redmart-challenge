@@ -8,7 +8,7 @@
     
     /**
      * Read the file, parse each cell into a format like this:
-     * {x, y, height, pathLength, parents, isValley, isPeak}
+     * {x, y, height, pathLength, peakHeight}
      */
     let filename = process.argv[2];
     let text = require("fs").readFileSync(filename).toString();
@@ -43,12 +43,10 @@
     
     
     /**
-     * Finds which of the neighbour cells is the best parent.
-     * 
+     * Updates the best scores.
      * Each cell has a score 1 better than the best surrounding cell.
-     * If the neighbour cell is unexplored, returns 1.
-     * If the neighbour cell has a path that is equal or better, that
-     * cell is marked as the previous cell.
+     * If the neighbour cell is unexplored, returns 1 and doesn't change anything.
+     * Returns 0 otherwise.
      * 
      * This assumes that this is called on cells in descending order of height.
      */
